@@ -1,0 +1,33 @@
+CREATE TABLE books
+(
+  ISBN VARCHAR NOT NULL,
+  book_title VARCHAR NOT NULL,
+  book_author VARCHAR NOT NULL,
+  year_of_publication INT NOT NULL,
+  publisher VARCHAR NOT NULL,
+  image_URL_s VARCHAR NOT NULL,
+  image_URL_m VARCHAR NOT NULL,
+  image_URL_l VARCHAR NOT NULL,
+  PRIMARY KEY (ISBN)
+);
+
+CREATE TABLE ratings
+(
+  user_ID INT NOT NULL,
+  ISBN VARCHAR NOT NULL,
+  book_rating INT NOT NULL,
+  PRIMARY KEY (ISBN),
+  FOREIGN KEY (ISBN) REFERENCES books(ISBN)
+);
+
+CREATE TABLE users
+(
+  user_ID INT NOT NULL,
+  location_1 VARCHAR NOT NULL,
+  location_2 VARCHAR NOT NULL,
+  location_3 VARCHAR NOT NULL,
+  age INT NOT NULL,
+  ISBN VARCHAR NOT NULL,
+  PRIMARY KEY (user_ID),
+  FOREIGN KEY (ISBN) REFERENCES ratings(ISBN)
+);
